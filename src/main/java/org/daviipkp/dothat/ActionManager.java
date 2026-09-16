@@ -50,9 +50,12 @@ public class ActionManager {
 
     private void fillAction(Action act, Map<String, Object> map) throws NoSuchFieldException, IllegalArgumentException, IllegalAccessException  {
         for(String s : map.keySet()) {
-            Field f = act.getClass().getField(s);
-            f.setAccessible(true);
-            f.set(act, map.get(s));
+            try{
+                Field f = act.getClass().getDeclaredField(s);
+                f.setAccessible(true);
+                f.set(act, map.get(s));
+            }catch(Exception e) {
+            }
         }
     }
     
