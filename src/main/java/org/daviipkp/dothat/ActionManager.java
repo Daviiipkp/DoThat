@@ -8,6 +8,7 @@ import java.util.Queue;
 import java.util.Set;
 
 import org.daviipkp.dothat.actions.Action;
+import org.daviipkp.textrie.Textrie;
 
 public class ActionManager {
 
@@ -33,28 +34,32 @@ public class ActionManager {
         });
     }
 
+    public void setDebug(boolean debug) {
+        Textrie.setDebug(debug);
+    }
+
     public Set<String> listActions() {
         return actionsMap.keySet();
     }
 
     private void executeQueueMember(QueueMember q) {
         Action act = actionsMap.get(q.getID());
+        Textrie.debug("Received execution of action with id " + q.getID());
         if(q.getArgs() != null) {
-            try{
-                fillAction(act, q.getArgs());
-            }catch(Exception e) {
-            }
+            fillAction(act, q.getArgs());
+            Textrie.debug("Filled action with arguments...");
         }
         act.execute();
     }
 
-    private void fillAction(Action act, Map<String, Object> map) throws NoSuchFieldException, IllegalArgumentException, IllegalAccessException  {
+    private void fillAction(Action act, Map<String, Object> map) {
         for(String s : map.keySet()) {
             try{
                 Field f = act.getClass().getDeclaredField(s);
                 f.setAccessible(true);
                 f.set(act, map.get(s));
-            }catch(Exception e) {
+            }catch(Throwable e) {
+                
             }
         }
     }

@@ -30,6 +30,11 @@
 	    <artifactId>DavieLib</artifactId>
 	    <version>b3c1e76bd5</version>
 	</dependency> 
+  <dependency>
+	    <groupId>com.github.Daviiipkp</groupId>
+	    <artifactId>Textrie</artifactId>
+	    <version>ccc7476709</version>
+	</dependency>
   </dependencies>
 
   <build>
