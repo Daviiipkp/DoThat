@@ -43,7 +43,6 @@ public class ActionManager {
             try{
                 fillAction(act, q.getArgs());
             }catch(Exception e) {
-                return; //TODO
             }
         }
         act.execute();
