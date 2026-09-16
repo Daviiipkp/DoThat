@@ -59,7 +59,7 @@ public class ActionManager {
                 f.setAccessible(true);
                 f.set(act, map.get(s));
             }catch(Throwable e) {
-                
+                Textrie.debug("Exception catch filling fields: " + e.getMessage());
             }
         }
     }
