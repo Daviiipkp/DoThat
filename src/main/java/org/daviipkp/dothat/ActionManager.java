@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Map;
 import java.util.Queue;
+import java.util.Set;
 
 import org.daviipkp.dothat.actions.Action;
 
@@ -30,6 +31,10 @@ public class ActionManager {
                 }
             }
         });
+    }
+
+    public Set<String> listActions() {
+        return actionsMap.keySet();
     }
 
     private void executeQueueMember(QueueMember q) {
